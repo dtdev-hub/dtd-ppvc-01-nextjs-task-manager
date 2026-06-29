@@ -17,14 +17,24 @@ type FilterType = 'all' | 'active' | 'completed';
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [filter, setFilter] = useState<FilterType>('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const completedTasks = tasks.filter((task) => task.completed).length;
   const progressValue =
     tasks.length === 0 ? 0 : Math.round((completedTasks / tasks.length) * 100);
 
   const filteredTasks = tasks.filter((task) => {
-    if (filter === 'active') return !task.completed;
-    if (filter === 'completed') return task.completed;
-    return true;
+    const matchesFilter = () => {
+      if (filter === 'active') return !task.completed;
+      if (filter === 'completed') return task.completed;
+      return true;
+    };
+
+    const matchesSearch = () => {
+      if (!searchQuery.trim()) return true;
+      return task.title.toLowerCase().includes(searchQuery.toLowerCase());
+    };
+
+    return matchesFilter() && matchesSearch();
   });
 
   const addTask = (title: string, priority: 'high' | 'medium' | 'low' = 'medium', dueDate?: string) => {
@@ -79,6 +89,47 @@ export default function Home() {
 
           <div className="w-full">
             <TaskForm onAddTask={addTask} />
+          </div>
+
+          <div className="w-full">
+            <div className="relative">
+              <svg
+                aria-hidden="true"
+                className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+              </svg>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search tasks..."
+                className="w-full rounded-xl border border-zinc-200 bg-white py-3 pl-12 pr-12 text-base text-zinc-950 shadow-sm shadow-zinc-100 outline-none transition placeholder:text-zinc-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 transition hover:text-zinc-600 focus:outline-none"
+                  aria-label="Clear search"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m6 18 12-12M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
+            </div>
           </div>
 
           <div className="w-full">
