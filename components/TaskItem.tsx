@@ -136,7 +136,7 @@ export default function TaskItem({
               value={editTitle}
               onChange={(e) => setEditTitle(e.target.value)}
               onKeyDown={handleKeyDown}
-              maxLength={100}
+              maxLength={500}
               className="min-h-10 min-w-0 flex-1 rounded-lg border border-zinc-200 bg-white px-3 text-zinc-950 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-blue-400 dark:focus:ring-blue-400/30"
               autoFocus
             />
@@ -174,9 +174,9 @@ export default function TaskItem({
           </div>
         ) : (
           <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-            <div className="flex min-w-0 flex-wrap items-center gap-2">
+            <div className="flex min-w-0 items-start justify-between gap-2">
               <span
-                className={`min-w-0 break-words break-all text-left text-base font-medium transition ${
+                className={`min-w-0 flex-1 break-words whitespace-normal text-left text-base font-medium transition ${
                   task.completed
                     ? "text-zinc-400 line-through decoration-zinc-300 dark:text-zinc-500 dark:decoration-zinc-600"
                     : "text-zinc-900 dark:text-zinc-100"
@@ -184,7 +184,9 @@ export default function TaskItem({
               >
                 {task.title}
               </span>
-              {getPriorityBadge()}
+              <div className="shrink-0 pt-0.5">
+                {getPriorityBadge()}
+              </div>
             </div>
             {formatDueDate() && (
               <span className={`text-xs font-medium ${isOverdue() ? 'text-red-600 dark:text-red-300' : 'text-zinc-500 dark:text-zinc-400'}`}>

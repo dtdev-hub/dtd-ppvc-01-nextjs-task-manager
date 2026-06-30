@@ -31,7 +31,7 @@ export default function TaskForm({ onAddTask }: TaskFormProps) {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Add a focused task..."
-        maxLength={100}
+        maxLength={500}
         className="min-h-12 rounded-xl border border-zinc-200 bg-white px-4 text-base text-zinc-950 shadow-sm shadow-zinc-100 outline-none transition placeholder:text-zinc-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-50 dark:shadow-zinc-950/40 dark:placeholder:text-zinc-500 dark:focus:border-blue-400 dark:focus:ring-blue-400/30"
       />
       <div className="flex gap-3">
