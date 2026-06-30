@@ -65,6 +65,7 @@ export default function Home() {
 
   const deleteTask = (id: string) => {
     const taskToDelete = tasks.find((task) => task.id === id);
+    const index = tasks.findIndex((t) => t.id === id);
     const remainingTasks = tasks.filter((task) => task.id !== id);
     setTasks(remainingTasks);
     toast.success('Task deleted successfully!', {
@@ -72,10 +73,14 @@ export default function Home() {
         label: 'Undo',
         onClick: () => {
           if (taskToDelete) {
-            const index = tasks.findIndex((t) => t.id === id);
-            const restored = [...remainingTasks];
-            restored.splice(index, 0, taskToDelete);
-            setTasks(restored);
+            setTasks((currentTasks) => {
+              if (currentTasks.some((t) => t.id === id)) {
+                return currentTasks;
+              }
+              const restored = [...currentTasks];
+              restored.splice(index, 0, taskToDelete);
+              return restored;
+            });
           }
         },
       },

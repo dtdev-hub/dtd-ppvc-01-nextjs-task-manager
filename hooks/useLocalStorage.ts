@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
+function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T | ((val: T) => T)) => void] {
   const hasLoadedRef = useRef(false);
   const initialValueRef = useRef(initialValue);
   const [storedValue, setStoredValue] = useState<T>(initialValue);
@@ -33,9 +33,9 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => voi
     }
   }, [key, storedValue]);
 
-  const setValue = (value: T) => {
+  const setValue = (value: T | ((val: T) => T)) => {
     hasLoadedRef.current = true;
-    setStoredValue(value);
+    setStoredValue((prev) => (typeof value === "function" ? (value as Function)(prev) : value));
   };
 
   return [storedValue, setValue];
