@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { createPortal } from "react-dom";
 
 interface Task {
   id: string;
@@ -241,8 +242,8 @@ export default function TaskItem({
         </button>
       </div>
 
-      {isDeleteModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-950/50 px-4 backdrop-blur-sm dark:bg-zinc-950/70">
+      {isDeleteModalOpen && typeof document !== 'undefined' && createPortal(
+        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-zinc-950/50 px-4 backdrop-blur-sm dark:bg-zinc-950/70">
           <div
             role="dialog"
             aria-modal="true"
@@ -291,7 +292,8 @@ export default function TaskItem({
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
