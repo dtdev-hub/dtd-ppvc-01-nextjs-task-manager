@@ -32,7 +32,7 @@ export default function ProjectOverview() {
         </div>
 
         <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-          The <strong>Task Manager</strong> is an ultra-fast, local-first productivity tool meticulously engineered to eliminate cognitive load and streamline daily task execution. Built on modern React and Next.js, this application provides users with an instant, distraction-free workflow to organize, prioritize, and systematically complete their targets.
+          The <strong>Task Manager</strong> is a local-first productivity web application focused on fast, offline-capable task tracking. Built with Next.js (App Router) and React, it provides a clean, minimal interface to manage daily priorities directly in the browser without external network dependencies.
         </p>
 
         <div className="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-3">

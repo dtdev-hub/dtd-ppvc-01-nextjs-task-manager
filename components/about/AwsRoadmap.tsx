@@ -6,7 +6,7 @@ export default function AwsRoadmap() {
       num: 1,
       title: "Phase 1: REST API Layer",
       subtitle: "AWS API Gateway + Lambda Functions",
-      description: "Introduce a highly scalable, serverless microservice layer to decouple client applications from persistent storage. API Gateway will handle route routing, rate limiting, and CORS, while Node.js-based AWS Lambda functions execute on-demand API endpoints to manage tasks.",
+      description: "Introduce a serverless microservice layer using AWS API Gateway and Python-based AWS Lambda functions to decouple the frontend from local storage and handle task routing on-demand.",
       status: "Upcoming",
     },
     {
@@ -56,7 +56,7 @@ export default function AwsRoadmap() {
         </div>
 
         <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-          To enable multi-device synchronization and robust data durability, the application is ready for migration to a secure, enterprise-grade cloud ecosystem. Below is our phased roadmap to serverless AWS architecture.
+          To enable multi-device synchronization and data durability, the roadmap outlines a conceptual migration path toward a serverless AWS architecture.
         </p>
 
         {/* Timeline Container */}

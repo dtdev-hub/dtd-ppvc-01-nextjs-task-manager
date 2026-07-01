@@ -37,7 +37,7 @@ export default function CurrentArchitecture() {
         </div>
 
         <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-          The task tracking architecture operates directly inside the browser. High-frequency inputs (such as typing into search or creating items) run through debouncing layers before updating local state, which is automatically synchronized to persistent browser storage.
+          The architecture operates entirely client-side. User actions (creating, searching, and filtering tasks) update the local React state—utilizing a debounce mechanism for search inputs—before automatically synchronizing with browser LocalStorage for persistence.
         </p>
 
         {/* Visual Flowchart Diagram */}

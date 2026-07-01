@@ -3,12 +3,12 @@ import React from "react";
 export default function SecurityMeasures() {
   const measures = [
     {
-      title: "Input Sanitization",
-      description: "Any user input for task titles is aggressively stripped of HTML tags, scripts, and executable tokens. This ensures that even if malicious code is submitted via copy-paste or specialized input devices, it is treated as raw text.",
+      title: "Input Handling",
+      description: "Ensures all task titles are validated for length boundaries and structural integrity before state commit, preventing memory bloat and trailing whitespace issues in browser storage.",
     },
     {
-      title: "LocalStorage Isolation",
-      description: "Task data is completely sandboxed within the host origin's local storage container. This isolation prevents other domains from accessing task logs, ensuring absolute privacy from cross-origin requests.",
+      title: "Data Isolation",
+      description: "Relies on the browser's Same-Origin Policy (SOP) to restrict LocalStorage access exclusively to the application's domain, protecting data from cross-origin requests.",
     },
     {
       title: "XSS Mitigation",

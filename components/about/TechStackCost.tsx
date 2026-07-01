@@ -32,7 +32,7 @@ export default function TechStackCost() {
         </div>
 
         <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-          We leverage cutting-edge frontend technologies combined with a local-first data architecture. By running computation and storing data entirely within the client container, the hosting cost of this application is minimized.
+          A client-side architecture designed to eliminate infrastructure costs. By handling all data operations and state persistence within the browser via the Web LocalStorage API, the application achieves a $0/month hosting footprint with zero backend database overhead.
         </p>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
